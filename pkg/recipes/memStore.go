@@ -4,28 +4,28 @@ import (
 	"log"
 )
 
-type MemStore struct {
+type memStore struct {
 }
 
-func NewMemStore() *MemStore {
-	return &MemStore{}
+func NewMemStore() *memStore {
+	return &memStore{}
 }
 
-func (m *MemStore) Add(name string, recipe Recipe) error {
+func (m *memStore) Add(name string, recipe Recipe) error {
 	log.Printf("Added recipe %s\n", name)
 
 	return nil
 }
 
-func (m *MemStore) Get(name string) (Recipe, error) {
+func (m *memStore) Get(name string) (Recipe, error) {
 	panic("implement me")
 }
 
-func (m *MemStore) Update(name string, recipe Recipe) error {
+func (m *memStore) Update(name string, recipe Recipe) error {
 	panic("implement me")
 }
 
-func (m *MemStore) List() (map[string]Recipe, error) {
+func (m *memStore) List() (map[string]Recipe, error) {
 	recipes := map[string]Recipe{
 		"pasta": {
 			Name: "Spaghetti Carbonara",
@@ -51,6 +51,6 @@ func (m *MemStore) List() (map[string]Recipe, error) {
 	return recipes, nil
 }
 
-func (m *MemStore) Remove(name string) error {
+func (m *memStore) Remove(name string) error {
 	panic("implement me")
 }

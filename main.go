@@ -16,17 +16,18 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	mux.Handle("/", &homeHandler{})
+	mux.Handle("/livez", &healthCheckHandler{})
+	mux.Handle("/readyz", &healthCheckHandler{})
 	mux.Handle("/recipes", recipesHandler)
 	mux.Handle("/recipes/", recipesHandler)
 
 	http.ListenAndServe("localhost:8080", mux)
 }
 
-type homeHandler struct{}
+type healthCheckHandler struct{}
 
-func (h *homeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("This is my home page"))
+func (h *healthCheckHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusNoContent)
 }
 
 var (
