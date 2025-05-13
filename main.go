@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/gosimple/slug"
 	"go-rest-api/pkg/recipes"
+	"log"
 	"net/http"
 	"regexp"
 )
@@ -13,6 +14,19 @@ func main() {
 	// Create the Store and Recipe Handler
 	store := recipes.NewMemStore()
 	recipesHandler := NewRecipesHandler(store)
+
+	//obj := recipes.Recipe{
+	//	Name: "Spaghetti Carbonara",
+	//	Ingredients: []recipes.Ingredient{
+	//		{Name: "tomatoes"},
+	//		{Name: "onion"},
+	//		{Name: "garlic"},
+	//		{Name: "oil"},
+	//	},
+	//}
+	//
+	//jsonBytes, _ := json.Marshal(obj)
+	//log.Printf(string(jsonBytes))
 
 	mux := http.NewServeMux()
 
@@ -46,6 +60,8 @@ func (h *RecipesHandler) CreateRecipe(w http.ResponseWriter, r *http.Request) {
 	resourceID := slug.Make(recipe.Name)
 	// Call the store to add the recipe
 	if err := h.store.Add(resourceID, recipe); err != nil {
+		log.Printf("Error adding recipe: %v\n", err)
+
 		InternalServerErrorHandler(w, r)
 		return
 	}
