@@ -26,6 +26,8 @@ func (m *memStore) Add(name string, recipe Recipe) error {
 
 func (m *memStore) Get(name string) (Recipe, error) {
 	if recipe, ok := m.recipes[name]; ok {
+		log.Printf("Get recipe %s\n", name)
+
 		return recipe, nil
 	}
 
@@ -36,6 +38,8 @@ func (m *memStore) Update(name string, recipe Recipe) error {
 	if _, ok := m.recipes[name]; ok {
 		m.recipes[name] = recipe
 
+		log.Printf("Updated recipe %s\n", name)
+
 		return nil
 	}
 
@@ -43,11 +47,15 @@ func (m *memStore) Update(name string, recipe Recipe) error {
 }
 
 func (m *memStore) List() (map[string]Recipe, error) {
+	log.Printf("List recipes\n")
+
 	return m.recipes, nil
 }
 
 func (m *memStore) Remove(name string) error {
 	delete(m.recipes, name)
+
+	log.Printf("Removed recipe %s\n", name)
 
 	return nil
 }
