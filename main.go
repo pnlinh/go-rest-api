@@ -15,19 +15,6 @@ func main() {
 	store := recipes.NewMemStore()
 	recipesHandler := NewRecipesHandler(store)
 
-	//obj := recipes.Recipe{
-	//	Name: "Spaghetti Carbonara",
-	//	Ingredients: []recipes.Ingredient{
-	//		{Name: "tomatoes"},
-	//		{Name: "onion"},
-	//		{Name: "garlic"},
-	//		{Name: "oil"},
-	//	},
-	//}
-	//
-	//jsonBytes, _ := json.Marshal(obj)
-	//log.Printf(string(jsonBytes))
-
 	mux := http.NewServeMux()
 
 	mux.Handle("/livez", &healthCheckHandler{})
