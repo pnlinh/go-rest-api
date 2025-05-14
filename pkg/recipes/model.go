@@ -1,7 +1,5 @@
 package recipes
 
-import "errors"
-
 // Represents a recipe
 type Recipe struct {
 	Name        string       `json:"name"`
@@ -12,5 +10,3 @@ type Recipe struct {
 type Ingredient struct {
 	Name string `json:"name"`
 }
-
-var NotFoundErr = errors.New("not found")

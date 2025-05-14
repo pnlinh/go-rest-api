@@ -1,8 +1,11 @@
 package recipes
 
 import (
+	"errors"
 	"log"
 )
+
+var NotFoundErr = errors.New("not found")
 
 type memStore struct {
 }
