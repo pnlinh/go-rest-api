@@ -22,6 +22,8 @@ func main() {
 	mux.Handle("/recipes", recipesHandler)
 	mux.Handle("/recipes/", recipesHandler)
 
+	log.Println("Server started")
+
 	http.ListenAndServe("localhost:8080", mux)
 }
 
