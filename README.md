@@ -2,4 +2,14 @@
 
 Simple RestAPI application with Go
 
-## Installation
+## How to use
+
+- Start application
+```shell
+make run
+```
+
+- Start application with live mode
+```shell
+make dev
+```
